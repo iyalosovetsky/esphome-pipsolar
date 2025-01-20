@@ -715,7 +715,8 @@ void Pipsolar::loop() {
                &ind, //&value_battery_power_direction_, 
                &ind, //&value_dc_ac_power_direction_, 
                &ind, //&value_line_power_direction_,
-               &ind //&value_local_parallel_id_);        
+               &ind //&value_local_parallel_id_
+               );        
         this->state_ = STATE_POLL_DECODED;
         break;        
       case POLLING_P007PGS0:
