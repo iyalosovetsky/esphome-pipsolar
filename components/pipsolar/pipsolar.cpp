@@ -20,6 +20,8 @@ void Pipsolar::empty_uart_buffer_() {
 
 void Pipsolar::loop() {
   // Read message
+  char buffer2[64];
+
   if (this->state_ == STATE_IDLE) {
     this->empty_uart_buffer_();
     switch (this->send_next_command_()) {
@@ -624,7 +626,6 @@ void Pipsolar::loop() {
                //                                &value_one_line_power_direction_, // 28 a
                //                                &value_one_max_temperature_ //29 bbb
         );
-        char buffer2[64];
         int ret = snprintf(buffer2, sizeof buffer2, "%f", value_battery_voltage_);
         ESP_LOGD(TAG, buffer2);
         this->state_ = STATE_POLL_DECODED;
