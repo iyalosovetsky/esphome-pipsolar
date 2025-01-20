@@ -89,7 +89,7 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(total_ac_output_active_power, P007PGS0, int)
   PIPSOLAR_SENSOR(total_output_load_percent, P007PGS0, int)
 //ig
-  PIPSOLAR_SENSOR(battery_voltage, P007PGS0, float)
+  PIPSOLAR_SENSOR(battery_voltage, P007PGS0, int)
   PIPSOLAR_SENSOR(battery_discharge_current, P007PGS0, int)                 // KKK
   PIPSOLAR_SENSOR(battery_charging_current, P007PGS0, int)                  // LLL
 
