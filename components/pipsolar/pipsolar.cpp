@@ -625,7 +625,6 @@ void Pipsolar::loop() {
                //                                &value_one_line_power_direction_, // 28 a
                //                                &value_one_max_temperature_ //29 bbb
         );
-        ESP_LOGD(TAG, value_battery_voltage_);
         this->state_ = STATE_POLL_DECODED;
         break;
       default:
