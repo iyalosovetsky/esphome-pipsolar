@@ -625,7 +625,7 @@ void Pipsolar::loop() {
                //                                &value_one_max_temperature_ //29 bbb
         );
         char buffer2[64];
-        int ret = snprintf(buffer2, sizeof buffer, "%f", value_battery_voltage_);
+        int ret = snprintf(buffer2, sizeof buffer2, "%f", value_battery_voltage_);
         ESP_LOGD(TAG, buffer2);
         this->state_ = STATE_POLL_DECODED;
         break;
