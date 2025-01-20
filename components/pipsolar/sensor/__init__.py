@@ -60,7 +60,7 @@ CONF_AC_OUTPUT_FREQUENCY = "ac_output_frequency"
 CONF_AC_OUTPUT_APPARENT_POWER = "ac_output_apparent_power"
 CONF_AC_OUTPUT_ACTIVE_POWER = "ac_output_active_power"
 CONF_OUTPUT_LOAD_PERCENT = "output_load_percent"
-# CONF_BATTERY_VOLTAGE = "battery_voltage"
+CONF_BATTERY_VOLTAGE = "battery_voltage"
 CONF_BATTERY_VOLTAGE_SCC = "battery_voltage_scc"
 CONF_BATTERY_VOLTAGE_SCC2 = "battery_voltage_scc2"
 CONF_BATTERY_DISCHARGE_CURRENT = "battery_discharge_current"
@@ -88,10 +88,6 @@ CONF_TOTAL_AC_OUTPUT_ACTIVE_POWER = "total_ac_output_active_power"
 CONF_TOTAL_OUTPUT_LOAD_PERCENT = "total_output_load_percent"
 
 
-#ig
-CONF_ONE_BATTERY_VOLTAGE = "one_battery_voltage"
-CONF_ONE_BATTERY_DISCHARGE_CURRENT = "one_battery_discharge_current"
-CONF_ONE_BATTERY_CHARGING_CURRENT = "one_battery_charging_current"
 
 CONF_TOTAL_BATTERY_CHARGING_CURRENT = "total_battery_charging_current"
 
