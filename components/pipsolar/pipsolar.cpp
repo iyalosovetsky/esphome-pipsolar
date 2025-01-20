@@ -20,8 +20,6 @@ void Pipsolar::empty_uart_buffer_() {
 
 void Pipsolar::loop() {
   // Read message
-  char buffer2[64];
-
   if (this->state_ == STATE_IDLE) {
     this->empty_uart_buffer_();
     switch (this->send_next_command_()) {
@@ -589,9 +587,10 @@ void Pipsolar::loop() {
       case POLLING_P007PGS0:
         ESP_LOGD(TAG, "Decode P007PGS0");
         //"^D1131,3,00,2384,500,2301,500,1287,1286,02621,02600,022,023,522,025,000,000,080,0027,0000,1200,0000,2,0,1,2,2,0,048D\xDF\r"
+        //^D1091,5,00,2142,500,2142,500,1156,1008,01156,01008,028,025,567,000,001,001,100,0056,0000,0664,0000,2,0,1,1,1,1\xE2z\r
         sscanf(tmp,  // 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
-               "^D%3d%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", &ind,
-               &ind, &ind, &ind, &ind, &ind, &ind, &ind, &ind, &ind,
+               "^D%3d%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d", &ind, //1
+               &ind, &ind, &ind, &ind, &ind, &ind, &ind, &ind, &ind, //2-10
                //                                &value_one_parallel_id_connection_status_, //1 A
                //                                &value_one_work_mode_, //2 B
                //                                &value_one_faults_code_, //3 CC
@@ -626,8 +625,7 @@ void Pipsolar::loop() {
                //                                &value_one_line_power_direction_, // 28 a
                //                                &value_one_max_temperature_ //29 bbb
         );
-        int ret = snprintf(buffer2, sizeof buffer2, "%f", value_battery_voltage_);
-        ESP_LOGD(TAG, buffer2);
+        ESP_LOGD(TAG, value_battery_voltage_);
         this->state_ = STATE_POLL_DECODED;
         break;
       default:
