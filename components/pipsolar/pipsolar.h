@@ -79,12 +79,12 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
 //  PIPSOLAR_SENSOR(pv1_input_voltage, P007GS, float)                       // SSSS
 //  PIPSOLAR_SENSOR(pv2_input_voltage, P007GS, float)                       // TTTT
   PIPSOLAR_BINARY_SENSOR(setting_value_configuration_state, P007GS, int)  // U
-  PIPSOLAR_SENSOR(mppt1_charger_status, P007GS, int)                      // V
-  PIPSOLAR_SENSOR(mppt2_charger_status, P007GS, int)                      // W
+//  PIPSOLAR_SENSOR(mppt1_charger_status, P007GS, int)                      // V
+//  PIPSOLAR_SENSOR(mppt2_charger_status, P007GS, int)                      // W
   PIPSOLAR_BINARY_SENSOR(load_connection, P007GS, int)                    // X
-  PIPSOLAR_SENSOR(battery_power_direction, P007GS, int)                   // Y
-  PIPSOLAR_SENSOR(dc_ac_power_direction, P007GS, int)                     // Z
-  PIPSOLAR_SENSOR(line_power_direction, P007GS, int)                      // a
+//  PIPSOLAR_SENSOR(battery_power_direction, P007GS, int)                   // Y
+//  PIPSOLAR_SENSOR(dc_ac_power_direction, P007GS, int)                     // Z
+//  PIPSOLAR_SENSOR(line_power_direction, P007GS, int)                      // a
   PIPSOLAR_SENSOR(local_parallel_id, P007GS, int)                         // b
 
 
@@ -136,10 +136,15 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
 
   PIPSOLAR_SENSOR(total_generated_energy, P005ET, int)
   //ig
-  PIPSOLAR_SENSOR(pv1_input_power, P005GS, float)                         // QQQQ
-  PIPSOLAR_SENSOR(pv2_input_power, P005GS, float)                         // RRRR
-  PIPSOLAR_SENSOR(pv1_input_voltage, P005GS, float)                       // SSSS
-  PIPSOLAR_SENSOR(pv2_input_voltage, P005GS, float)                       // TTTT
+  PIPSOLAR_SENSOR(pv1_input_power, P005GS, int)                         // QQQQ
+  PIPSOLAR_SENSOR(pv2_input_power, P005GS, int)                         // RRRR
+  PIPSOLAR_SENSOR(pv1_input_voltage, P005GS, int)                       // SSSS
+  PIPSOLAR_SENSOR(pv2_input_voltage, P005GS, int)                       // TTTT
+  PIPSOLAR_SENSOR(mppt1_charger_status, P005GS, int)                      // V
+  PIPSOLAR_SENSOR(mppt2_charger_status, P005GS, int)                      // W
+  PIPSOLAR_SENSOR(battery_power_direction, P005GS, int)                   // Y
+  PIPSOLAR_SENSOR(dc_ac_power_direction, P005GS, int)                     // Z
+  PIPSOLAR_SENSOR(line_power_direction, P005GS, int)                      // a
 
   //            PIPSOLAR_SENSOR(pv_power_balance, P007PIRI, int)
 

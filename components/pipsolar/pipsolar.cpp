@@ -411,6 +411,9 @@ void Pipsolar::loop() {
         break;
 
 
+
+
+      case POLLING_P005GS:
         // "response": [
         //     ["10int", "Grid voltage", "V"],
         //     ["10int", "Grid frequency", "Hz"],
@@ -431,9 +434,7 @@ void Pipsolar::loop() {
         //     ["int", "PV1 Input power", "W"],
         //     ["int", "PV2 Input power", "W"],
         //     ["10int", "PV1 Input voltage", "V"],
-        //     ["10int", "PV2 Input voltage", "V"],
-
-      case POLLING_P005GS:
+        //     ["10int", "PV2 Input voltage", "V"],      
         if (this->pv1_input_power_) {
           this->pv1_input_power_->publish_state(value_pv1_input_power_);
         }
@@ -645,7 +646,49 @@ void Pipsolar::loop() {
         break;
       case POLLING_P005GS:
         ESP_LOGD(TAG, "Decode POLLING_P005GS");
-        // sscanf(tmp, "^D%3d%08d", &ind, &value_total_generated_energy_);
+        // "response": [
+        //     ["10int", "Grid voltage", "V"],
+        //     ["10int", "Grid frequency", "Hz"],
+        //     ["10int", "AC output voltage", "V"],
+        //     ["10int", "AC output frequency", "Hz"],
+        //     ["int", "AC output apparent power", "VA"],
+        //     ["int", "AC output active power", "W"],
+        //     ["int", "Output load percent", "%"],
+        //     ["10int", "Battery voltage", "V"],
+        //     ["10int", "Battery voltage from SCC", "V"],
+        //     ["10int", "Battery voltage from SCC2", "V"],
+        //     ["int", "Battery discharge current", "A"],
+        //     ["int", "Battery charging current", "A"],
+        //     ["int", "Battery capacity", "%"],
+        //     ["int", "Inverter heat sink temperature", "C"],
+        //     ["int", "MPPT1 charger temperature", "C"],
+        //     ["int", "MPPT2 charger temperature", "C"],
+        //     ["int", "PV1 Input power", "W"],
+        //     ["int", "PV2 Input power", "W"],
+        //     ["10int", "PV1 Input voltage", "V"],
+        //     ["10int", "PV2 Input voltage", "V"],        
+        //"^D1062148,500,2148,500,1181,1022,029,567,000,000,000,000,100,028,000,000,0000,0000,0000,0000,0,0,0,1,1,1,1,0\xD3o\r"
+        // was       "^D1062135,499,2135,499,2102,2102,037,544,000,000,000,039,095,049,000,000,0000,0000,0000,0000,0,0,0,1,1,1,1,1\e\'\r"
+        sscanf(tmp, "^D%3d%f,%f,%f,%f,%d,%d,%d,%f,%f,%f,%d,%d,%d,%d,%f, %f,%f,%f,%f,%f,%d,%d,%d,%d,%d,%d,%d,%d", &ind,
+               &value_grid_voltage_, &value_grid_frequency_, &value_ac_output_voltage_, &value_ac_output_frequency_,
+               &value_ac_output_apparent_power_, 
+               &value_ac_output_active_power_, 
+               &value_output_load_percent_,
+               &value_battery_voltage_, 
+               &value_battery_voltage_scc_, &value_battery_voltage_scc2_,
+               //  &value_battery_discharge_current_, 
+               &ind,
+               //&value_battery_charging_current_, 
+               &ind,
+               &value_battery_capacity_percent_,
+               &value_inverter_heat_sink_temperature_, &value_mppt1_charger_temperature_,
+               &value_mppt2_charger_temperature_, 
+               &value_pv1_input_power_, &value_pv2_input_power_,
+               &value_pv1_input_voltage_, &value_pv2_input_voltage_, 
+               &value_setting_value_configuration_state_,
+               &value_mppt1_charger_status_, &value_mppt2_charger_status_, &value_load_connection_,
+               &value_battery_power_direction_, &value_dc_ac_power_direction_, &value_line_power_direction_,
+               &value_local_parallel_id_);        
         this->state_ = STATE_POLL_DECODED;
         break;        
       case POLLING_P007PGS0:
