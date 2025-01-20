@@ -469,6 +469,7 @@ void Pipsolar::loop() {
         this->state_ = STATE_IDLE;
         break;
 
+
         
       case POLLING_P007PGS0:
         // if (this->total_ac_output_apparent_power_) {
