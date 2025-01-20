@@ -211,15 +211,15 @@ void Pipsolar::loop() {
         if (this->ac_output_frequency_) {
           this->ac_output_frequency_->publish_state(value_ac_output_frequency_ * 0.1);
         }
-        if (this->ac_output_apparent_power_) {
-          this->ac_output_apparent_power_->publish_state(value_ac_output_apparent_power_);
-        }
-        if (this->ac_output_active_power_) {
-          this->ac_output_active_power_->publish_state(value_ac_output_active_power_);
-        }
-        if (this->output_load_percent_) {
-          this->output_load_percent_->publish_state(value_output_load_percent_);
-        }
+        // if (this->ac_output_apparent_power_) {
+        //   this->ac_output_apparent_power_->publish_state(value_ac_output_apparent_power_);
+        // }
+        // if (this->ac_output_active_power_) {
+        //   this->ac_output_active_power_->publish_state(value_ac_output_active_power_);
+        // }
+        // if (this->output_load_percent_) {
+        //   this->output_load_percent_->publish_state(value_output_load_percent_);
+        // }
 //ig
         // if (this->battery_voltage_) {
         //   this->battery_voltage_->publish_state(value_battery_voltage_ * 0.1);
@@ -409,15 +409,27 @@ void Pipsolar::loop() {
         this->state_ = STATE_IDLE;
         break;
       case POLLING_P007PGS0:
-        if (this->total_ac_output_apparent_power_) {
-          this->total_ac_output_apparent_power_->publish_state(value_total_ac_output_apparent_power_);
+        // if (this->total_ac_output_apparent_power_) {
+        //   this->total_ac_output_apparent_power_->publish_state(value_total_ac_output_apparent_power_);
+        // }
+        // if (this->total_ac_output_active_power_) {
+        //   this->total_ac_output_active_power_->publish_state(value_total_ac_output_active_power_);
+        // }
+        // if (this->total_output_load_percent_) {
+        //   this->total_output_load_percent_->publish_state(value_total_output_load_percent_);
+        // }        
+//ig
+        if (this->ac_output_apparent_power_) {
+          this->ac_output_apparent_power_->publish_state(value_ac_output_apparent_power_);
         }
-        if (this->total_ac_output_active_power_) {
-          this->total_ac_output_active_power_->publish_state(value_total_ac_output_active_power_);
+        if (this->ac_output_active_power_) {
+          this->ac_output_active_power_->publish_state(value_ac_output_active_power_);
         }
-        if (this->total_output_load_percent_) {
-          this->total_output_load_percent_->publish_state(value_total_output_load_percent_);
+        if (this->output_load_percent_) {
+          this->output_load_percent_->publish_state(value_output_load_percent_);
         }
+
+
 //ig
         //  if (this->value_one_battery_voltage_) {
         //   this->value_one_battery_voltage_->publish_state(value_one_battery_voltage_);
@@ -481,8 +493,13 @@ void Pipsolar::loop() {
         //        "^D1062135,499,2135,499,2102,2102,037,544,000,000,000,039,095,049,000,000,0000,0000,0000,0000,0,0,0,1,1,1,1,1\e\'\r"
         sscanf(tmp, "^D%3d%f,%f,%f,%f,%d,%d,%d,%f,%f,%f,%d,%d,%d,%d,%f, %f,%f,%f,%f,%f,%d,%d,%d,%d,%d,%d,%d,%d", &ind,
                &value_grid_voltage_, &value_grid_frequency_, &value_ac_output_voltage_, &value_ac_output_frequency_,
-               &value_ac_output_apparent_power_, &value_ac_output_active_power_, &value_output_load_percent_,
-               //&value_battery_voltage_, 
+              //  &value_ac_output_apparent_power_, 
+              //  &value_ac_output_active_power_, 
+              //  &value_output_load_percent_,
+              //  &value_battery_voltage_, 
+               &ind, 
+               &ind, 
+               &ind, 
                &ind, 
                &value_battery_voltage_scc_, &value_battery_voltage_scc2_,
                //  &value_battery_discharge_current_, 
@@ -600,10 +617,13 @@ void Pipsolar::loop() {
                //                                &value_one_ac_output_frequency_, // 7 GGG
                //                                &value_one_ac_output_apparent_power_, //8 HHHH
                //                                &value_one_ac_output_active_power_, //9 IIII
-               &value_total_ac_output_apparent_power_,  // 10 JJJJJ
-               &value_total_ac_output_active_power_,    // 11 KKKKK
+               //&value_total_ac_output_apparent_power_,  // 10 JJJJJ
+               //&value_total_ac_output_active_power_,    // 11 KKKKK
+               &value_ac_output_apparent_power_, 
+               &value_ac_output_active_power_, 
                &ind,                                    // &value_one_output_load_percent_, //12 LLL
-               &value_total_output_load_percent_,       // 13 MMM
+              //  &value_total_output_load_percent_,       // 13 MMM
+               &value_output_load_percent_,
               //  &ind,                                    // &value_one_battery_voltage_, //14 NNN
               //  &ind,                                    // &value_one_battery_discharge_current_, //15 OOO
               //  &ind,                                    // &value_one_battery_charging_current_, //16 PPP

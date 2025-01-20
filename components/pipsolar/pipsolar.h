@@ -60,9 +60,9 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(grid_frequency, P007GS, float)                          // BBB
   PIPSOLAR_SENSOR(ac_output_voltage, P007GS, float)                       // CCCC
   PIPSOLAR_SENSOR(ac_output_frequency, P007GS, float)                     // DDD
-  PIPSOLAR_SENSOR(ac_output_apparent_power, P007GS, int)                  // EEEE
-  PIPSOLAR_SENSOR(ac_output_active_power, P007GS, int)                    // FFFF
-  PIPSOLAR_SENSOR(output_load_percent, P007GS, int)                       // GGG
+//  PIPSOLAR_SENSOR(ac_output_apparent_power, P007GS, int)                  // EEEE
+//  PIPSOLAR_SENSOR(ac_output_active_power, P007GS, int)                    // FFFF
+// PIPSOLAR_SENSOR(output_load_percent, P007GS, int)                       // GGG
   //PIPSOLAR_SENSOR(battery_voltage, P007GS, float)                         // HHH
   PIPSOLAR_SENSOR(battery_voltage_scc, P007GS, float)                     // III
   PIPSOLAR_SENSOR(battery_voltage_scc2, P007GS, float)                    // JJJ
@@ -85,9 +85,15 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(line_power_direction, P007GS, int)                      // a
   PIPSOLAR_SENSOR(local_parallel_id, P007GS, int)                         // b
 
-  PIPSOLAR_SENSOR(total_ac_output_apparent_power, P007PGS0, int)
-  PIPSOLAR_SENSOR(total_ac_output_active_power, P007PGS0, int)
-  PIPSOLAR_SENSOR(total_output_load_percent, P007PGS0, int)
+
+//ig
+  //PIPSOLAR_SENSOR(total_ac_output_apparent_power, P007PGS0, int)
+  //PIPSOLAR_SENSOR(total_ac_output_active_power, P007PGS0, int)
+  //PIPSOLAR_SENSOR(total_output_load_percent, P007PGS0, int)
+  PIPSOLAR_SENSOR(ac_output_apparent_power, P007PGS0, int)                  // EEEE
+  PIPSOLAR_SENSOR(ac_output_active_power, P007PGS0, int)                    // FFFF
+  PIPSOLAR_SENSOR(output_load_percent, P007PGS0, int)                       // GGG
+
 //ig
   PIPSOLAR_SENSOR(battery_voltage, P007PGS0, int)
   PIPSOLAR_SENSOR(battery_discharge_current, P007PGS0, int)                 // KKK
