@@ -199,18 +199,18 @@ void Pipsolar::loop() {
         this->state_ = STATE_IDLE;
         break;
       case POLLING_P007GS:
-        if (this->grid_voltage_) {
-          this->grid_voltage_->publish_state(value_grid_voltage_ * 0.1);
-        }
-        if (this->grid_frequency_) {
-          this->grid_frequency_->publish_state(value_grid_frequency_ * 0.1);
-        }
-        if (this->ac_output_voltage_) {
-          this->ac_output_voltage_->publish_state(value_ac_output_voltage_ * 0.1);
-        }
-        if (this->ac_output_frequency_) {
-          this->ac_output_frequency_->publish_state(value_ac_output_frequency_ * 0.1);
-        }
+        // if (this->grid_voltage_) {
+        //   this->grid_voltage_->publish_state(value_grid_voltage_ * 0.1);
+        // }
+        // if (this->grid_frequency_) {
+        //   this->grid_frequency_->publish_state(value_grid_frequency_ * 0.1);
+        // }
+        // if (this->ac_output_voltage_) {
+        //   this->ac_output_voltage_->publish_state(value_ac_output_voltage_ * 0.1);
+        // }
+        // if (this->ac_output_frequency_) {
+        //   this->ac_output_frequency_->publish_state(value_ac_output_frequency_ * 0.1);
+        // }
         // if (this->ac_output_apparent_power_) {
         //   this->ac_output_apparent_power_->publish_state(value_ac_output_apparent_power_);
         // }
@@ -238,12 +238,12 @@ void Pipsolar::loop() {
         // if (this->battery_charging_current_) {
         //   this->battery_charging_current_->publish_state(value_battery_charging_current_);
         // }
-        if (this->battery_capacity_percent_) {
-          this->battery_capacity_percent_->publish_state(value_battery_capacity_percent_);
-        }
-        if (this->inverter_heat_sink_temperature_) {
-          this->inverter_heat_sink_temperature_->publish_state(value_inverter_heat_sink_temperature_);
-        }
+        // if (this->battery_capacity_percent_) {
+        //   this->battery_capacity_percent_->publish_state(value_battery_capacity_percent_);
+        // }
+        // if (this->inverter_heat_sink_temperature_) {
+        //   this->inverter_heat_sink_temperature_->publish_state(value_inverter_heat_sink_temperature_);
+        // }
         // if (this->mppt1_charger_temperature_) {
         //   this->mppt1_charger_temperature_->publish_state(value_mppt1_charger_temperature_);
         // }
@@ -275,15 +275,15 @@ void Pipsolar::loop() {
         if (this->load_connection_) {
           this->load_connection_->publish_state(value_load_connection_);
         }
-        if (this->battery_power_direction_) {
-          this->battery_power_direction_->publish_state(value_battery_power_direction_);
-        }
-        if (this->dc_ac_power_direction_) {
-          this->dc_ac_power_direction_->publish_state(value_dc_ac_power_direction_);
-        }
-        if (this->line_power_direction_) {
-          this->line_power_direction_->publish_state(value_line_power_direction_);
-        }
+        // if (this->battery_power_direction_) {
+        //   this->battery_power_direction_->publish_state(value_battery_power_direction_);
+        // }
+        // if (this->dc_ac_power_direction_) {
+        //   this->dc_ac_power_direction_->publish_state(value_dc_ac_power_direction_);
+        // }
+        // if (this->line_power_direction_) {
+        //   this->line_power_direction_->publish_state(value_line_power_direction_);
+        // }
         if (this->local_parallel_id_) {
           this->local_parallel_id_->publish_state(value_local_parallel_id_);
         }
@@ -435,6 +435,20 @@ void Pipsolar::loop() {
         //     ["int", "PV2 Input power", "W"],
         //     ["10int", "PV1 Input voltage", "V"],
         //     ["10int", "PV2 Input voltage", "V"],      
+
+        if (this->grid_voltage_) {
+          this->grid_voltage_->publish_state(value_grid_voltage_ * 0.1);
+        }
+        if (this->grid_frequency_) {
+          this->grid_frequency_->publish_state(value_grid_frequency_ * 0.1);
+        }
+        if (this->ac_output_voltage_) {
+          this->ac_output_voltage_->publish_state(value_ac_output_voltage_ * 0.1);
+        }
+        if (this->ac_output_frequency_) {
+          this->ac_output_frequency_->publish_state(value_ac_output_frequency_ * 0.1);
+        }
+
         if (this->pv1_input_power_) {
           this->pv1_input_power_->publish_state(value_pv1_input_power_);
         }
@@ -453,6 +467,12 @@ void Pipsolar::loop() {
         if (this->battery_voltage_scc2_) {
           this->battery_voltage_scc2_->publish_state(value_battery_voltage_scc2_ * 0.1);
         }
+        if (this->battery_capacity_percent_) {
+          this->battery_capacity_percent_->publish_state(value_battery_capacity_percent_);
+        }
+        if (this->inverter_heat_sink_temperature_) {
+          this->inverter_heat_sink_temperature_->publish_state(value_inverter_heat_sink_temperature_);
+        }        
         if (this->mppt1_charger_temperature_) {
           this->mppt1_charger_temperature_->publish_state(value_mppt1_charger_temperature_);
         }
@@ -464,6 +484,15 @@ void Pipsolar::loop() {
         }
         if (this->mppt2_charger_status_) {
           this->mppt2_charger_status_->publish_state(value_mppt2_charger_status_);
+        }
+        if (this->battery_power_direction_) {
+          this->battery_power_direction_->publish_state(value_battery_power_direction_);
+        }
+        if (this->dc_ac_power_direction_) {
+          this->dc_ac_power_direction_->publish_state(value_dc_ac_power_direction_);
+        }
+        if (this->line_power_direction_) {
+          this->line_power_direction_->publish_state(value_line_power_direction_);
         }
 
         this->state_ = STATE_IDLE;
