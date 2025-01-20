@@ -21,6 +21,7 @@ enum ENUMPollingCommand {
   //            POLLING_QMN = 6,
   POLLING_P007PGS0 = 10,
   POLLING_P005ET = 30,
+  POLLING_P005GS = 31,
 };
 
 struct PollingCommand {
@@ -72,10 +73,10 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(inverter_heat_sink_temperature, P007GS, int)            // NNN
   PIPSOLAR_SENSOR(mppt1_charger_temperature, P007GS, float)               // OOO
   PIPSOLAR_SENSOR(mppt2_charger_temperature, P007GS, float)               // PPP
-  PIPSOLAR_SENSOR(pv1_input_power, P007GS, float)                         // QQQQ
-  PIPSOLAR_SENSOR(pv2_input_power, P007GS, float)                         // RRRR
-  PIPSOLAR_SENSOR(pv1_input_voltage, P007GS, float)                       // SSSS
-  PIPSOLAR_SENSOR(pv2_input_voltage, P007GS, float)                       // TTTT
+  ; PIPSOLAR_SENSOR(pv1_input_power, P007GS, float)                         // QQQQ
+  ; PIPSOLAR_SENSOR(pv2_input_power, P007GS, float)                         // RRRR
+  ; PIPSOLAR_SENSOR(pv1_input_voltage, P007GS, float)                       // SSSS
+  ; PIPSOLAR_SENSOR(pv2_input_voltage, P007GS, float)                       // TTTT
   PIPSOLAR_BINARY_SENSOR(setting_value_configuration_state, P007GS, int)  // U
   PIPSOLAR_SENSOR(mppt1_charger_status, P007GS, int)                      // V
   PIPSOLAR_SENSOR(mppt2_charger_status, P007GS, int)                      // W
@@ -133,6 +134,12 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(mppt_string, P007PIRI, int)           // 25 a
 
   PIPSOLAR_SENSOR(total_generated_energy, P005ET, int)
+  //ig
+  PIPSOLAR_SENSOR(pv1_input_power, P005GS, float)                         // QQQQ
+  PIPSOLAR_SENSOR(pv2_input_power, P005GS, float)                         // RRRR
+  PIPSOLAR_SENSOR(pv1_input_voltage, P005GS, float)                       // SSSS
+  PIPSOLAR_SENSOR(pv2_input_voltage, P005GS, float)                       // TTTT
+
   //            PIPSOLAR_SENSOR(pv_power_balance, P007PIRI, int)
 
   // P006MOD values

@@ -250,18 +250,19 @@ void Pipsolar::loop() {
         if (this->mppt2_charger_temperature_) {
           this->mppt2_charger_temperature_->publish_state(value_mppt2_charger_temperature_);
         }
-        if (this->pv1_input_power_) {
-          this->pv1_input_power_->publish_state(value_pv1_input_power_);
-        }
-        if (this->pv2_input_power_) {
-          this->pv2_input_power_->publish_state(value_pv2_input_power_);
-        }
-        if (this->pv1_input_voltage_) {
-          this->pv1_input_voltage_->publish_state(value_pv1_input_voltage_ * 0.1);
-        }
-        if (this->pv2_input_voltage_) {
-          this->pv2_input_voltage_->publish_state(value_pv2_input_voltage_ * 0.1);
-        }
+//ig
+        // if (this->pv1_input_power_) {
+        //   this->pv1_input_power_->publish_state(value_pv1_input_power_);
+        // }
+        // if (this->pv2_input_power_) {
+        //   this->pv2_input_power_->publish_state(value_pv2_input_power_);
+        // }
+        // if (this->pv1_input_voltage_) {
+        //   this->pv1_input_voltage_->publish_state(value_pv1_input_voltage_ * 0.1);
+        // }
+        // if (this->pv2_input_voltage_) {
+        //   this->pv2_input_voltage_->publish_state(value_pv2_input_voltage_ * 0.1);
+        // }
         if (this->setting_value_configuration_state_) {
           this->setting_value_configuration_state_->publish_state(value_setting_value_configuration_state_);
         }
@@ -408,6 +409,47 @@ void Pipsolar::loop() {
         }
         this->state_ = STATE_IDLE;
         break;
+
+
+        // "response": [
+        //     ["10int", "Grid voltage", "V"],
+        //     ["10int", "Grid frequency", "Hz"],
+        //     ["10int", "AC output voltage", "V"],
+        //     ["10int", "AC output frequency", "Hz"],
+        //     ["int", "AC output apparent power", "VA"],
+        //     ["int", "AC output active power", "W"],
+        //     ["int", "Output load percent", "%"],
+        //     ["10int", "Battery voltage", "V"],
+        //     ["10int", "Battery voltage from SCC", "V"],
+        //     ["10int", "Battery voltage from SCC2", "V"],
+        //     ["int", "Battery discharge current", "A"],
+        //     ["int", "Battery charging current", "A"],
+        //     ["int", "Battery capacity", "%"],
+        //     ["int", "Inverter heat sink temperature", "C"],
+        //     ["int", "MPPT1 charger temperature", "C"],
+        //     ["int", "MPPT2 charger temperature", "C"],
+        //     ["int", "PV1 Input power", "W"],
+        //     ["int", "PV2 Input power", "W"],
+        //     ["10int", "PV1 Input voltage", "V"],
+        //     ["10int", "PV2 Input voltage", "V"],
+
+      case POLLING_P005GS:
+        if (this->pv1_input_power_) {
+          this->pv1_input_power_->publish_state(value_pv1_input_power_);
+        }
+        if (this->pv2_input_power_) {
+          this->pv2_input_power_->publish_state(value_pv2_input_power_);
+        }
+        if (this->pv1_input_voltage_) {
+          this->pv1_input_voltage_->publish_state(value_pv1_input_voltage_ * 0.1);
+        }
+        if (this->pv2_input_voltage_) {
+          this->pv2_input_voltage_->publish_state(value_pv2_input_voltage_ * 0.1);
+        }        
+        this->state_ = STATE_IDLE;
+        break;
+
+        
       case POLLING_P007PGS0:
         // if (this->total_ac_output_apparent_power_) {
         //   this->total_ac_output_apparent_power_->publish_state(value_total_ac_output_apparent_power_);
@@ -601,6 +643,11 @@ void Pipsolar::loop() {
         sscanf(tmp, "^D%3d%08d", &ind, &value_total_generated_energy_);
         this->state_ = STATE_POLL_DECODED;
         break;
+      case POLLING_P005GS:
+        ESP_LOGD(TAG, "Decode POLLING_P005GS");
+        // sscanf(tmp, "^D%3d%08d", &ind, &value_total_generated_energy_);
+        this->state_ = STATE_POLL_DECODED;
+        break;        
       case POLLING_P007PGS0:
         ESP_LOGD(TAG, "Decode P007PGS0");
         //"^D1131,3,00,2384,500,2301,500,1287,1286,02621,02600,022,023,522,025,000,000,080,0027,0000,1200,0000,2,0,1,2,2,0,048D\xDF\r"
