@@ -148,10 +148,10 @@ class Pipsolar : public uart::UARTDevice, public PollingComponent {
   PIPSOLAR_SENSOR(battery_capacity_percent, P005GS, int)                  // MMM
   PIPSOLAR_SENSOR(inverter_heat_sink_temperature, P005GS, int)            // NNN
 
-  PIPSOLAR_SENSOR(pv1_input_power, P005GS, int)                         // QQQQ
-  PIPSOLAR_SENSOR(pv2_input_power, P005GS, int)                         // RRRR
-  PIPSOLAR_SENSOR(pv1_input_voltage, P005GS, int)                       // SSSS
-  PIPSOLAR_SENSOR(pv2_input_voltage, P005GS, int)                       // TTTT
+  PIPSOLAR_SENSOR(pv1_input_power, P005GS, float)                         // QQQQ
+  PIPSOLAR_SENSOR(pv2_input_power, P005GS, float)                         // RRRR
+  PIPSOLAR_SENSOR(pv1_input_voltage, P005GS, float)                       // SSSS
+  PIPSOLAR_SENSOR(pv2_input_voltage, P005GS, float)                       // TTTT
   PIPSOLAR_SENSOR(mppt1_charger_status, P005GS, int)                      // V
   PIPSOLAR_SENSOR(mppt2_charger_status, P005GS, int)                      // W
   PIPSOLAR_SENSOR(mppt1_charger_temperature, P005GS, float)               // OOO
